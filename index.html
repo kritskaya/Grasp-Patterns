@@ -16,8 +16,304 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>GRASP design patterns</section>
+				<section>
+					<h2>Pattern</h2>
+					<ul>
+						<li>template for solving any specific problem</li>
+						<li>general solution concept needs to be built into program with making some changes</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Why we need using patterns?</h3>
+					<p style="text-align: left">using those solutions that have been successfully and efficiently made before</p>
+				</section>
+				<section>
+					<h1>GRASP</h1>
+					<p style="text-align: left">(General Responsibility Assignment Software Pattern)</p>
+					<p style="text-align: left; margin-top: 50px">set of 9 patterns systematized the most general principles of Object Oriented design and approaches for assignment responsibilities.</p>
+				</section>
+				<section>
+					<h2>Responsobilities</h2>
+					<ul>
+						<li>“Knowing responsibility” - class attributes</li>
+						<li>“Doing responsibility” - class methods</li>
+					</ul>
+					<pre><code data-trim data-noescape>
+						class Car {
+							private name: string;
+							private color: string;
+							...
+							public startEngine() {
+								...
+							}
+							public stopEngine() {
+								...
+							}
+						}
+					</code></pre>
+				</section>
+				<section>
+					<h2>1. Information Expert</h2>
+					<p style="text-align: left">assign responsibility to a class that contains required information</p>
+					<pre><code data-trim data-noescape>
+						class WinnersTable {
+							private winners: Winner[];
+							...
+							public getBestWinnersTime() {
+								return Math.max(...winners.map((winner) => winner.getTime()));
+							}
+							public getMaxWinsCount() {
+								return Math.max(...winners.map((winner) => winner.getWins()));
+							}
+						}
+					</code></pre>
+				</section>
+				<section>
+					<div style="display: flex; gap: 15px"><h2>Pros</h2><p>of using Information Expert:</p></div>
+					<ul>
+						<li>preservation of encapsulation</li>
+						<li>providing low coupling</li>
+					</ul>
+					<hr>
+					<div style="display: flex; gap: 15px"><h2>Cons</h2><p>of using Information Expert:</p></div>
+					<p style="text-align: left">assigning too many responsibilities -> not satisfy Low Coupling and High Cohesion patterns </p>
+				</section>
+				<section>
+					<h2>2. Creator</h2>
+					<div>define classes for creating instances of other classes.</div>
+
+					<ul style="margin-top: 50px">Assign responsibility to a class if one (or more) of these conditions is true:
+						<li>the class B has or get data than needed to initialize the class A</li>
+						<li>the class B records or closely uses instances of the class A</li>
+						<li>the class B contains or aggregates instances of the class A</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Example</h2>
+					<pre><code data-trim data-noescape>
+						class Garage {
+							private cars: Car[];
+							…
+							public addCar(car: Car) {
+								this.cars.push(car);
+							}
+							public getCar(id: number) {
+								return this.cars.find((car) => car.getId() === id);
+							}
+						}						
+					</code></pre>
+				</section>
+				<section>
+					<div style="display: flex; gap: 15px; justify-content: center"><h2>Pros</h2><p>of using Creator:</p></div>
+					<ul>
+						<li>preserving of encapsulation </li>
+						<li>avoiding new dependencies</li>
+					</ul>
+				</section>
+				<section>
+					<h2>3. Low Coupling</h2>
+					<p style="text-align: left">determines how this class is related to other classes and what information about other classes it contains</p>
+
+					<ul style="margin-top: 50px">Standard ways for coupling objects together:
+						<li>object A has an attribute that referenced to object B</li>
+						<li>object A has the method which use an object B like as a parameter, local variable or return value</li>
+						<li>class A is subclass of class B</li>
+						<li>B is an interface that is implemented by class A</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Example</h2>
+					<pre><code data-trim data-noescape>
+						class Garage {
+							private cars: Car[];
+							…
+							public addCar(car: Car) {
+								this.cars.push(car);
+							}
+							public getCar(id: number) {
+								return this.cars.find((car) => car.getId() === id);
+							}
+						}						
+					</code></pre>
+				</section>
+				<section>
+					<div style="display: flex; gap: 15px; justify-content: center"><h2>Pros</h2><p>of using Low Coupling:</p></div>
+					<ul>
+						<li>reduce dependencies between classes</li>
+						<li>change in one class doesn’t impact to another class</li>
+						<li>increase reuse facility</li>
+					</ul>
+				</section>
+				<section>
+					<h2>4. High Cohesion</h2>
+					<p style="text-align: left">Cohesion determines the level of specialization of the class on the responsibility it has. </p>
+
+					<pre><code data-trim data-noescape>
+						class Garage {
+							private cars: Car[];
+							private winners: Winner[];
+							…
+							public addCar(car: Car) {
+								this.cars.push(car);
+							}
+							public addWinner(winner: Winner) {
+								this.winners.push(winner);
+							}
+						}						
+					</code></pre>
+				</section>
+				<section>
+					<div style="display: flex; gap: 15px; justify-content: center"><h2>Pros</h2><p>of using High Cohesion:</p></div>
+					<ul>
+						<li>simple for understanding</li>
+						<li>easy to maintain and to reuse</li>
+						<li>reliability</li>
+					</ul>
+				</section>
+				<section>
+					<h2>5. Controller</h2>
+					<p style="text-align: left">class that not related to the user interface and it is responsible for handling system events</p>
+					<pre><code data-trim data-noescape>
+					class AppController {
+						private service: GarageService;
+						private view: GarageView;
+						...
+						public garageEventHandler(): void {
+							document.body.addEventListener('click', async (event) => {
+							  const target = event.target as HTMLElement;
+							  ...
+							}
+						}
+						public async getNextCars() {
+							...
+							this.view.updateGarageView(cars, currentPage + 1, amount);
+							this.service.setGaragePage(currentPage + 1);
+						}
+					</code></pre>
+				</section>
+				<section>
+					<div style="display: flex; gap: 15px; justify-content: center"><h2>Avoid</h2><p>specific situations in using this pattern:</p></div>
+					<ul>
+						<li>assigning many roles to one controllers</li>
+						<li>handling huge number of events by one controller</li>
+					</ul>
+				</section>
+				<section>
+					<h2>6. Indirection</h2>
+					<p style="text-align: left">assign responsibility of objects interaction to additional class-mediator</p>
+				</section>
+				<section>
+					<h2>Example</h2>
+					<pre><code data-trim data-noescape>
+					class ApiService {
+						...
+						public async createCar(item: Car): Promise<JSON> {
+							...
+							const response = await fetch(this.garage, params);
+							return await response.json();
+						}
+						
+						public async createWinner(item: Winner): Promise<JSON> {
+							...
+							const response = await fetch(`${this.winner}`, params);
+							return  await response.json();
+						}
+						...
+					}
+					</code></pre>	
+				</section>
+				<section>
+					<div style="display: flex; gap: 15px; justify-content: center"><h2>Pros</h2><p>using Inderection:</p></div>
+					<ul>
+						<li>support Low Coupling between classes</li>
+						<li>increase reuse facility</li>
+					</ul>
+				</section>
+				<section>
+					<h2>7. Polymorphism</h2>
+					<p style="text-align: left">allows processing alternatives and behaviors vary by type of the object</p>
+					<p style="text-align: left; margin-top: 50px">handle similar variations and solve the problem of creating pluggable software components</p>
+				</section>
+				<section>
+					<h2>Example</h2>
+					<pre><code data-trim data-noescape>
+					class Garage {
+						private cars: ICar[];
+						…
+						public addCar(car: ICar) {
+							this.cars.push(car);
+						}
+						public getCar(id: number) {
+							return this.cars.find((car) => car.getId() === id);
+						}
+					}
+				</code></pre>
+				</section>
+				<section>
+					<div style="display: flex; gap: 15px; justify-content: center"><h2>Pros</h2><p>using Polymorphism:</p></div>
+					<ul>
+						<li>handling new variations will become easy</li>
+						<li>easier to make changes in future</li>
+					</ul>
+				</section>
+				<section>
+					<h2>8. Pure Fabrication</h2>
+					<p style="text-align: left">creates the class that not represents any real object but have responsibility to manage real-world objects</p>
+				</section>
+				<section>
+					<h2>Example</h2>
+					<pre><code data-trim data-noescape>
+					class ApiService {
+						...
+						public async createCar(item: Car): Promise<JSON> {
+							...
+							const response = await fetch(this.garage, params);
+							return await response.json();
+						}
+						
+						public async createWinner(item: Winner): Promise<JSON> {
+							...
+							const response = await fetch(`${this.winner}`, params);
+							return  await response.json();
+						}
+						...
+					}
+					</code></pre>	
+				</section>
+				<section>
+					<div style="display: flex; gap: 15px; justify-content: center"><h2>Pros</h2><p>using Pure Fabrication:</p></div>
+					<ul>
+						<li>system design follows Low Coupling pattern</li>
+						<li>support High Cohesion</li>
+					</ul>
+				</section>
+				<section>
+					<h2>9. Protected Variations</h2>
+					<p>avoids impact of variations and behaviors of some components to another ones providing a well defined interfaces to instability points</p>
+				</section>
+				<section>
+					<div style="display: flex; gap: 15px; justify-content: center"><h2>Pros</h2><p>using Protected Variations:</p></div>
+					<ul>
+						<li>providing more structured design</li>
+						<li>flexibility and protection from changes</li>
+					</ul>
+				</section>
+				<section>
+					<h2>benefits of using patterns:</h2>
+					<ul>
+						<li>we spend less time using ready to made solutions</li>
+						<li>the number of design errors is reduced. All hidden problems are already considered</li>
+						<li>using public common terminology will be easier for understanding and describing problems and solutions</li>
+					</ul>
+				</section>
+				<section>
+					<h2>OOP principles -> GRASP petterns -> GoF patterns</h2>
+				</section>
+				<section>
+					<h2 style="margin-top: 200px">Thank you for your attention</h2>
+					<img src="https://img-fotki.yandex.ru/get/7/100348571.454/0_d0672_ce172c9f_orig.gif" alt="" width="150">
+				</section>
 			</div>
 		</div>
 
