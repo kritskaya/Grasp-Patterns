@@ -12,32 +12,62 @@
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<style>
+			.definition {
+				color: #4d79ff !important;
+			}
+			.pros {
+				color: #009933 !important;
+			}
+			.cons {
+				color: #cc3300 !important;
+			}
+			li {
+				color: yellow;
+			}
+			li span {
+				color: white;
+			}
+			.title {
+				display: flex; 
+				gap: 15px; 
+				justify-content: center;
+			}
+			.left {
+				text-align: left;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>GRASP design patterns</section>
 				<section>
-					<h2>Pattern</h2>
+					<h2 class="r-fit-text definition">
+						GRASP
+					</h2>
+					<h2>design patterns</h2>
+				</section>
+				<section>
+					<h2 class="definition">Pattern</h2>
 					<ul>
-						<li>template for solving any specific problem</li>
-						<li>general solution concept needs to be built into program with making some changes</li>
+						<li><span>template for solving any specific problem</span></li>
+						<li><span>general solution concept needs to be built into program with making some changes</span></li>
 					</ul>
 				</section>
 				<section>
 					<h3>Why we need using patterns?</h3>
-					<p style="text-align: left">using those solutions that have been successfully and efficiently made before</p>
+					<p class="left">using those solutions that have been successfully and efficiently made before</p>
 				</section>
 				<section>
-					<h1>GRASP</h1>
-					<p style="text-align: left">(General Responsibility Assignment Software Pattern)</p>
-					<p style="text-align: left; margin-top: 50px">set of 9 patterns systematized the most general principles of Object Oriented design and approaches for assignment responsibilities.</p>
+					<h1 class="definition">GRASP</h1>
+					<p class="left">(General Responsibility Assignment Software Pattern)</p>
+					<p class="left" style="margin-top: 50px">set of 9 patterns systematized the most general principles of Object Oriented design and approaches for assignment responsibilities.</p>
 				</section>
 				<section>
-					<h2>Responsobilities</h2>
+					<h2 class="definition">Responsobilities</h2>
 					<ul>
-						<li>“Knowing responsibility” - class attributes</li>
-						<li>“Doing responsibility” - class methods</li>
+						<li><span>“Knowing responsibility” - class attributes</span></li>
+						<li><span>“Doing responsibility” - class methods</span></li>
 					</ul>
 					<pre><code data-trim data-noescape>
 						class Car {
@@ -54,8 +84,12 @@
 					</code></pre>
 				</section>
 				<section>
-					<h2>1. Information Expert</h2>
-					<p style="text-align: left">assign responsibility to a class that contains required information</p>
+					<h2 class="definition">1. Information Expert</h2>
+					<div style="display: flex; align-items: center;">
+						<p class="left">assign responsibility to a class that contains required information</p>
+						<img src="https://i.pinimg.com/originals/8c/11/f2/8c11f259710d171d977f52c86fd07c0b.gif" alt="Expert" width="150">
+					</div>
+					
 					<pre><code data-trim data-noescape>
 						class WinnersTable {
 							private winners: Winner[];
@@ -70,23 +104,30 @@
 					</code></pre>
 				</section>
 				<section>
-					<div style="display: flex; gap: 15px"><h2>Pros</h2><p>of using Information Expert:</p></div>
+					<div class="title">
+						<h2 class="pros">Pros</h2><p>of using <span class="definition">Information Expert:</span></p>
+					</div>
 					<ul>
-						<li>preservation of encapsulation</li>
-						<li>providing low coupling</li>
+						<li><span>preservation of encapsulation</span></li>
+						<li><span>providing low coupling</span></li>
 					</ul>
-					<hr>
-					<div style="display: flex; gap: 15px"><h2>Cons</h2><p>of using Information Expert:</p></div>
-					<p style="text-align: left">assigning too many responsibilities -> not satisfy Low Coupling and High Cohesion patterns </p>
+					
+					<div class="title" style="margin-top: 50px">
+						<h2 class="cons">Cons</h2><p>of using <span class="definition">Information Expert:</span></p>
+					</div>
+					<p class="left">assigning too many responsibilities -> not satisfy Low Coupling and High Cohesion patterns </p>
 				</section>
 				<section>
-					<h2>2. Creator</h2>
-					<div>define classes for creating instances of other classes.</div>
+					<h2 class="definition">2. Creator</h2>
+					<div style="display: flex; align-items: center;">
+						<p class="left">define classes for creating instances of other classes</p>
+						<img src="https://i.gifer.com/origin/65/65cef19f6c35a790398dfaf20471d033.gif" alt="creator" width="200"> 
+					</div>
 
-					<ul style="margin-top: 50px">Assign responsibility to a class if one (or more) of these conditions is true:
-						<li>the class B has or get data than needed to initialize the class A</li>
-						<li>the class B records or closely uses instances of the class A</li>
-						<li>the class B contains or aggregates instances of the class A</li>
+					<ul style="margin-top: 30px; font-size: 37px">Assign responsibility to a class if one (or more) of these conditions is true:
+						<li><span>the class B has or get data than needed to initialize the class A</span></li>
+						<li><span>the class B records or closely uses instances of the class A</span></li>
+						<li><span>the class B contains or aggregates instances of the class A</span></li>
 					</ul>
 				</section>
 				<section>
@@ -105,21 +146,27 @@
 					</code></pre>
 				</section>
 				<section>
-					<div style="display: flex; gap: 15px; justify-content: center"><h2>Pros</h2><p>of using Creator:</p></div>
+					<div class="title">
+						<h2 class="pros">Pros</h2><p>of using <span class="definition">Creator:</span></p>
+					</div>
 					<ul>
-						<li>preserving of encapsulation </li>
-						<li>avoiding new dependencies</li>
+						<li><span>preserving of encapsulation</span></li>
+						<li><span>avoiding new dependencies</span></li>
 					</ul>
 				</section>
 				<section>
-					<h2>3. Low Coupling</h2>
-					<p style="text-align: left">determines how this class is related to other classes and what information about other classes it contains</p>
+					<h2 class="definition">3. Low Coupling</h2>
+					<div style="display: flex; align-items: center;">
+						<p class="left">determines how this class is related to other classes and what information about other classes it contains</p>
+						<img src="https://c.tenor.com/Gv-eKy3apVYAAAAM/arrows-moving-arrows.gif" alt="" width="150">
+					</div>
+					
 
-					<ul style="margin-top: 50px">Standard ways for coupling objects together:
-						<li>object A has an attribute that referenced to object B</li>
-						<li>object A has the method which use an object B like as a parameter, local variable or return value</li>
-						<li>class A is subclass of class B</li>
-						<li>B is an interface that is implemented by class A</li>
+					<ul style="margin-top: 30px">Standard ways for coupling objects together:
+						<li><span>object A has an attribute that referenced to object B</span></li>
+						<li><span>object A has the method which use an object B like as a parameter, local variable or return value</span></li>
+						<li><span>class A is subclass of class B</span></li>
+						<li><span>B is an interface that is implemented by class A</span></li>
 					</ul>
 				</section>
 				<section>
@@ -138,16 +185,18 @@
 					</code></pre>
 				</section>
 				<section>
-					<div style="display: flex; gap: 15px; justify-content: center"><h2>Pros</h2><p>of using Low Coupling:</p></div>
+					<div class="title">
+						<h2 class="pros">Pros</h2><p>of using <span class="definition">Low Coupling:</span></p>
+					</div>
 					<ul>
-						<li>reduce dependencies between classes</li>
-						<li>change in one class doesn’t impact to another class</li>
-						<li>increase reuse facility</li>
+						<li><span>reduce dependencies between classes</span></li>
+						<li><span>change in one class doesn’t impact to another class</span></li>
+						<li><span>increase reuse facility</span></li>
 					</ul>
 				</section>
 				<section>
-					<h2>4. High Cohesion</h2>
-					<p style="text-align: left">Cohesion determines the level of specialization of the class on the responsibility it has. </p>
+					<h2 class="definition">4. High Cohesion</h2>
+					<p class="left">Cohesion determines the level of specialization of the class on the responsibility it has. </p>
 
 					<pre><code data-trim data-noescape>
 						class Garage {
@@ -164,16 +213,22 @@
 					</code></pre>
 				</section>
 				<section>
-					<div style="display: flex; gap: 15px; justify-content: center"><h2>Pros</h2><p>of using High Cohesion:</p></div>
+					<div class="title">
+						<h2 class="pros">Pros</h2><p>of using <span class="definition">High Cohesion:</span></p>
+					</div>
 					<ul>
-						<li>simple for understanding</li>
-						<li>easy to maintain and to reuse</li>
-						<li>reliability</li>
+						<li><span>simple for understanding</span></li>
+						<li><span>easy to maintain and to reuse</span></li>
+						<li><span>reliability</span></li>
 					</ul>
 				</section>
 				<section>
-					<h2>5. Controller</h2>
-					<p style="text-align: left">class that not related to the user interface and it is responsible for handling system events</p>
+					<h2 class="definition">5. Controller</h2>
+					<div style="display: flex; align-items: center;">
+						<p class="left">class that not related to the user interface and it is responsible for handling system events</p>
+						<img src="https://3.bp.blogspot.com/-tR7H2L-50Pg/XW_Iz36f6pI/AAAAAAAU0LM/Sxzwj-h7oyAVWK0w5BB3tOUf5vyoyvhrACLcBGAs/s1600/AW3994533_08.gif" alt="press-key" width="150">
+					</div>
+					
 					<pre><code data-trim data-noescape>
 					class AppController {
 						private service: GarageService;
@@ -193,15 +248,21 @@
 					</code></pre>
 				</section>
 				<section>
-					<div style="display: flex; gap: 15px; justify-content: center"><h2>Avoid</h2><p>specific situations in using this pattern:</p></div>
+					<div class="title">
+						<h2 class="cons">Avoid</h2><p>specific situations in using <span class="definition">Controller:</span></p>
+					</div>
 					<ul>
-						<li>assigning many roles to one controllers</li>
-						<li>handling huge number of events by one controller</li>
+						<li><span>assigning many roles to one controllers</span></li>
+						<li><span>handling huge number of events by one controller</span></li>
 					</ul>
 				</section>
 				<section>
-					<h2>6. Indirection</h2>
-					<p style="text-align: left">assign responsibility of objects interaction to additional class-mediator</p>
+					<h2 class="definition">6. Indirection</h2>
+					<div style="display: flex; align-items: center;">
+						<p class="left">assign responsibility of objects interaction to additional class-mediator</p>
+						<img src="https://masumahjannah.files.wordpress.com/2016/11/img_2499.gif" alt="mediator" width="200">
+					</div>
+					
 				</section>
 				<section>
 					<h2>Example</h2>
@@ -224,16 +285,26 @@
 					</code></pre>	
 				</section>
 				<section>
-					<div style="display: flex; gap: 15px; justify-content: center"><h2>Pros</h2><p>using Inderection:</p></div>
+					<div class="title">
+						<h2 class="pros">Pros</h2><p>using <span class="definition">Inderection:</span></p>
+					</div>
 					<ul>
-						<li>support Low Coupling between classes</li>
-						<li>increase reuse facility</li>
+						<li><span>support Low Coupling between classes</span></li>
+						<li><span>increase reuse facility</span></li>
 					</ul>
 				</section>
 				<section>
-					<h2>7. Polymorphism</h2>
-					<p style="text-align: left">allows processing alternatives and behaviors vary by type of the object</p>
-					<p style="text-align: left; margin-top: 50px">handle similar variations and solve the problem of creating pluggable software components</p>
+					<h2 class="definition">7. Polymorphism</h2>
+					<div style="display: flex; align-items: center;">
+						<div>
+							<p class="left">allows processing alternatives and behaviors vary by type of the object</p>
+							<p class="left" style="margin-top: 50px">handle similar variations and solve the problem of creating pluggable software components</p>
+						</div>
+						
+						
+						<img width="200" src="https://i.gifer.com/origin/f8/f8db9685f2babba2af1ea58a44720005.gif" alt="choice">
+					</div>
+					
 				</section>
 				<section>
 					<h2>Example</h2>
@@ -251,15 +322,20 @@
 				</code></pre>
 				</section>
 				<section>
-					<div style="display: flex; gap: 15px; justify-content: center"><h2>Pros</h2><p>using Polymorphism:</p></div>
+					<div class="title">
+						<h2 class="pros">Pros</h2><p>using <span class="definition">Polymorphism:</span></p>
+					</div>
 					<ul>
-						<li>handling new variations will become easy</li>
-						<li>easier to make changes in future</li>
+						<li><span>handling new variations will become easy</span></li>
+						<li><span>easier to make changes in future</span></li>
 					</ul>
 				</section>
 				<section>
-					<h2>8. Pure Fabrication</h2>
-					<p style="text-align: left">creates the class that not represents any real object but have responsibility to manage real-world objects</p>
+					<h2 class="definition">8. Pure Fabrication</h2>
+					<div style="display: flex; align-items: center;">
+						<p class="left">creates the class that not represents any real object but have responsibility to manage real-world objects</p>
+						<img src="https://media4.giphy.com/media/xRJZH4Ajr973y/giphy.gif" alt="fabrication" width="150">
+					</div>					
 				</section>
 				<section>
 					<h2>Example</h2>
@@ -282,33 +358,44 @@
 					</code></pre>	
 				</section>
 				<section>
-					<div style="display: flex; gap: 15px; justify-content: center"><h2>Pros</h2><p>using Pure Fabrication:</p></div>
+					<div class="title">
+						<h2 class="pros">Pros</h2><p>using <span class="definition">Pure Fabrication:</span></p>
+					</div>
 					<ul>
-						<li>system design follows Low Coupling pattern</li>
-						<li>support High Cohesion</li>
+						<li><span>system design follows Low Coupling pattern</span></li>
+						<li><span>support High Cohesion</span></li>
 					</ul>
 				</section>
 				<section>
-					<h2>9. Protected Variations</h2>
-					<p>avoids impact of variations and behaviors of some components to another ones providing a well defined interfaces to instability points</p>
+					<h2 class="definition">9. Protected Variations</h2>
+					<div style="display: flex; align-items: center;">
+						<p class="left">avoids impact of variations and behaviors of some components to another ones providing a well defined interfaces to instability points</p>
+						<img src="https://miro.medium.com/max/2400/1*mIuwR3dLSLw4tbCkX2L7Lw.gif" alt="lock" width="150">
+					</div>					
 				</section>
 				<section>
-					<div style="display: flex; gap: 15px; justify-content: center"><h2>Pros</h2><p>using Protected Variations:</p></div>
+					<div class="title">
+						<h2 class="pros">Pros</h2><p>using <span class="definition">Protected Variations:</span></p>
+					</div>
 					<ul>
-						<li>providing more structured design</li>
-						<li>flexibility and protection from changes</li>
+						<li><span>providing more structured design</span></li>
+						<li><span>flexibility and protection from changes</span></li>
 					</ul>
 				</section>
 				<section>
-					<h2>benefits of using patterns:</h2>
+					<h2 class="definition">benefits of using patterns:</h2>
 					<ul>
-						<li>we spend less time using ready to made solutions</li>
-						<li>the number of design errors is reduced. All hidden problems are already considered</li>
-						<li>using public common terminology will be easier for understanding and describing problems and solutions</li>
+						<li><span>we spend less time using ready to made solutions</span></li>
+						<li><span>the number of design errors is reduced. All hidden problems are already considered</span></li>
+						<li><span>using public common terminology will be easier for understanding and describing problems and solutions</span></li>
 					</ul>
 				</section>
 				<section>
-					<h2>OOP principles -> GRASP petterns -> GoF patterns</h2>
+					<h2 style="border: 1px solid white">OOP principles</h2>
+					<h2>↓</h2>
+					<h2 style="border: 1px solid white">GRASP petterns</h2>
+					<h2>↓</h2>
+					<h2 style="border: 1px solid white">GoF patterns</h2>
 				</section>
 				<section>
 					<h2 style="margin-top: 200px">Thank you for your attention</h2>
